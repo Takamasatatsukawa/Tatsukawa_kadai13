@@ -10,9 +10,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    # ここでtaskにuser_idが入っている状態にしたい
+    # user_idはcurrent_userでわかる
+    # current_user.tasks.buildをするとuser_idがセットされたタスクのインスタンスができる
+    # インスタンスはTask.newをしたものとcurrent_user.build.tasksを実行したものが同じもの
+    # Task.newでインスタンスを作成してもuser_id自動ではセットされない
+
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, notice: t('.created')
+      redirect_to @task, notice: t('.created')
     else
       render :new
     end
@@ -26,7 +32,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: t('.updated')
+      redirect_to @task, notice: t('.updated')
     else
       render :edit
     end
@@ -34,7 +40,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: t('.destroyed')
+    redirect_to @task, notice: t('.destroyed')
   end
 
   private
