@@ -8,7 +8,7 @@ class UsersController < ApplicationController
    @user = User.new(user_params)
    if @user.save
       log_in(@user)
-      redirect_to user_path(@user.id), notice: 'アカウントが作成されました。'
+      redirect_to user_path(@user.id), notice: 'アカウントを登録しました。'
      # ユーザ登録に成功した場合の処理
    else
       flash.now[:alert] = 'アカウント登録が失敗しました。'
