@@ -7,7 +7,7 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
-        password_confirmation: パスワード (確認)   
+        password_confirmation: パスワード
       task:
         title: タイトル
         content: 内容
@@ -16,7 +16,7 @@ ja:
     messages:
       accepted: を受諾してください
       blank: を入力してください
-      confirmation: と%{attribute}の入力が一致しません
+      confirmation: （確認）と%{attribute}の入力が一致しません
       empty: を入力してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください
